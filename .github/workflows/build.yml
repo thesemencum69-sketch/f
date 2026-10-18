@@ -16,19 +16,18 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
-
       - name: Сборка APK
         run: |
+          echo "Android SDK: $ANDROID_HOME"
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon
           cp app/build/outputs/apk/debug/app-debug.apk Skupka.apk
@@ -49,14 +48,14 @@ jobs:
 
   site:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # Сайт публикуется, только если в настройках репозитория включён GitHub Pages (Source: GitHub Actions).
     continue-on-error: true
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
