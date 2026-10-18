@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Гранёный кристалл по центру иконки -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:fillColor="#DDD6FE" android:pathData="M30,48 L42,33 L47,48 Z" />
+    <path android:fillColor="#F5F3FF" android:pathData="M42,33 L66,33 L61,48 L47,48 Z" />
+    <path android:fillColor="#C4B5FD" android:pathData="M66,33 L78,48 L61,48 Z" />
+    <path android:fillColor="#A78BFA" android:pathData="M30,48 L47,48 L54,77 Z" />
+    <path android:fillColor="#8B5CF6" android:pathData="M47,48 L61,48 L54,77 Z" />
+    <path android:fillColor="#6D28D9" android:pathData="M61,48 L78,48 L54,77 Z" />
+</vector>
