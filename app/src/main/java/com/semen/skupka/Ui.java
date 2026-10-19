@@ -91,18 +91,26 @@ final class Ui {
 
     /** 1250000 -> "1 250 000" */
     static String fmt(long v) {
-        return String.format(Locale.US, "%,d", v).replace(',', ' ');
+        return Logic.fmt(v);
     }
 
     static long parse(String s) {
-        if (s == null) return 0;
-        s = s.trim();
-        if (s.isEmpty()) return 0;
-        try {
-            return Long.parseLong(s);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
+        return Logic.parse(s);
+    }
+
+    /** Переключатель-плашка: «ВКЛ» / «ВЫКЛ». */
+    static void stylePill(Context c, TextView t, boolean on, String onText, String offText) {
+        t.setText(on ? onText : offText);
+        t.setTextColor(on ? 0xFF0E0C17 : MUTED);
+        t.setBackground(round(c, on ? GREEN : FIELD, 20));
+    }
+
+    static TextView pill(Context c) {
+        TextView t = text(c, "", 12, TEXT, true);
+        t.setGravity(Gravity.CENTER);
+        t.setPadding(dp(c, 12), dp(c, 6), dp(c, 12), dp(c, 6));
+        t.setClickable(true);
+        return t;
     }
 
     /** TextWatcher, которому нужен только итоговый текст. */

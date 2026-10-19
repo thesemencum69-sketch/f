@@ -25,6 +25,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Тесты расчёта
+        run: |
+          mkdir -p /tmp/t
+          javac -encoding UTF-8 -d /tmp/t app/src/main/java/com/semen/skupka/Logic.java tests/com/semen/skupka/LogicTest.java
+          java -cp /tmp/t com.semen.skupka.LogicTest
+
       - name: Сборка APK
         run: |
           echo "Android SDK: $ANDROID_HOME"
@@ -41,9 +47,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "v1.0.${{ github.run_number }}" Skupka.apk \
-            --title "Скупка 1.0 (сборка ${{ github.run_number }})" \
-            --notes "Плавающий калькулятор для скупки ресурсов. Скачайте Skupka.apk и установите на Android 8.0+." \
+          gh release create "v2.0.${{ github.run_number }}" Skupka.apk \
+            --title "Скупка 2.0 (сборка ${{ github.run_number }})" \
+            --notes "Помощник скупки: цены, проверка трейда, объявления, журнал. Скачайте Skupka.apk и установите на Android 8.0+." \
             --latest
 
   site:
